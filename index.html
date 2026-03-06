@@ -3,19 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DADFROZ FREE FIRE TOURNAMENT</title>
+<title>FREE FIRE TOURNAMENT</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-font-family:'Roboto',sans-serif;
-color:#00f5ff; /* Neon blue default text */
+font-family:'Orbitron',sans-serif;
+color:#00f5ff;
 background:black;
 overflow-x:hidden;
-line-height:1.5;
 }
 
 #loader{
@@ -30,18 +28,6 @@ z-index:9999;
 flex-direction:column;
 }
 
-#loader h1{
-font-family:'Bebas Neue',sans-serif;
-color:#00f5ff;
-animation:pulse 1.5s infinite alternate;
-font-size:40px;
-}
-
-@keyframes pulse{
-from{opacity:0.5;}
-to{opacity:1;}
-}
-
 canvas{
 position:fixed;
 top:0;
@@ -50,8 +36,8 @@ z-index:-1;
 }
 
 .notice{
-background:#00f5ff;
-color:black;
+background:#a020f0;
+color:white;
 padding:12px;
 text-align:center;
 font-weight:bold;
@@ -59,26 +45,29 @@ font-size:14px;
 }
 
 section{
-padding:50px 20px;
+padding:50px 15px;
 text-align:center;
 }
 
 .main-title{
-font-family:'Bebas Neue',sans-serif;
+font-family:'Bebas Neue', sans-serif;
 font-size:60px;
 letter-spacing:4px;
-color:#a020f0; /* Purple main title */
-text-shadow:
-0 0 10px #a020f0,
-0 0 25px #a020f0,
-0 0 40px #7b2cbf;
+background:linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#ff00c8,#ff0000);
+background-size:400%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:gradientMove 6s linear infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0%}
+100%{background-position:400%}
 }
 
 .section-title{
-font-family:'Orbitron',sans-serif;
-font-size:24px;
+font-size:22px;
 margin-bottom:20px;
-color:#00f5ff; /* Neon blue section titles */
 }
 
 .cards{
@@ -86,31 +75,22 @@ display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:20px;
-margin-top:20px;
 }
 
 .card{
 background:rgba(0,0,0,0.9);
-padding:25px;
+padding:20px;
 width:280px;
 border-radius:12px;
-border:1px solid #00f5ff; /* Neon blue border */
-box-shadow:0 0 20px #00f5ff;
-transition:0.3s;
-font-family:'Roboto',sans-serif;
-}
-
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 30px #00f5ff;
+border:1px solid #a020f0;
+box-shadow:0 0 20px #a020f0;
 }
 
 .highlight{
-color:#00ff9d; /* Keep green highlights */
+color:#00ff88;
 font-size:18px;
 margin-top:15px;
 font-weight:bold;
-text-shadow:0 0 10px #00ff9d;
 }
 
 form{max-width:400px;margin:auto;}
@@ -119,43 +99,47 @@ input{
 width:100%;
 padding:14px;
 margin:12px 0;
-border:1px solid #00f5ff;
+border:1px solid #a020f0;
 background:black;
 color:#00f5ff;
 border-radius:6px;
-font-family:'Roboto',sans-serif;
-font-weight:500;
-}
-
-input:focus{
-outline:none;
-box-shadow:0 0 10px #00f5ff;
 }
 
 button{
 width:100%;
 padding:15px;
-background:#00f5ff;
-color:black;
+background:#a020f0;
+color:white;
 border:none;
 border-radius:6px;
 font-weight:bold;
-font-family:'Orbitron',sans-serif;
 cursor:pointer;
-transition:0.3s;
+margin-top:10px;
 }
 
 button:hover{
-background:black;
-color:#00f5ff;
-border:1px solid #00f5ff;
+background:#00f5ff;
+color:black;
+}
+
+.players{
+max-width:600px;
+margin:auto;
+text-align:left;
+margin-top:30px;
+}
+
+.player{
+background:#111;
+border:1px solid #a020f0;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
 }
 
 footer{
 padding:20px;
 font-size:12px;
-color:#00f5ff;
-font-family:'Roboto',sans-serif;
 }
 
 @media(max-width:600px){
@@ -170,10 +154,6 @@ font-family:'Roboto',sans-serif;
 <h1>Loading Tournament...</h1>
 </div>
 
-<audio id="clickSound">
-<source src="https://www.soundjay.com/button/sounds/button-4.mp3" type="audio/mpeg">
-</audio>
-
 <canvas id="matrix"></canvas>
 
 <div class="notice">
@@ -181,93 +161,151 @@ font-family:'Roboto',sans-serif;
 </div>
 
 <section>
-<h1 class="main-title">🔥 DADFROZ FREE FIRE TOURNAMENT 🔥</h1>
-<p style="margin-top:20px;">Entry Fee ₹30 Per Player</p>
-<p class="highlight">💰 ₹7 PER KILL BONUS 💰</p>
-</section>
-
-<section>
-<h2 class="section-title">Tournament Info</h2>
-<div class="cards">
-<div class="card">
-<h3>Mode</h3>
-<p>Solo (1 Player)<br>₹30 Per Player<br><br><strong>₹7 Per Kill</strong></p>
-</div>
-</div>
+<h1 class="main-title">🔥 FREE FIRE TOURNAMENT 🔥</h1>
+<p style="margin-top:20px;">Entry Fee ₹10 Per Player</p>
+<p class="highlight">💰 ₹3 PER KILL BONUS 💰</p>
 </section>
 
 <section>
 <h2 class="section-title">Prize Distribution</h2>
+
 <div class="cards">
-<div class="card"><h3>🥇 1st Prize</h3><p>₹250</p></div>
-<div class="card"><h3>🥈 2nd Prize</h3><p>₹150</p></div>
-<div class="card"><h3>🥉 3rd Prize</h3><p>₹50</p></div>
+<div class="card"><h3>🥇 1st Prize</h3><p>₹100</p></div>
+<div class="card"><h3>🥈 2nd Prize</h3><p>₹50</p></div>
+<div class="card"><h3>🥉 3rd Prize</h3><p>₹20</p></div>
 </div>
-<p class="highlight">🔥 Extra ₹7 for Every Kill 🔥</p>
+
+<p class="highlight">🔥 Extra ₹3 for Every Kill 🔥</p>
 </section>
 
 <section>
+
 <h2 class="section-title">Player Registration</h2>
-<form onsubmit="sendToWhatsApp(); return false;">
-<input type="text" id="team" placeholder="Player Name" required>
-<input type="text" id="captain" placeholder="IGN / UID" required>
+
+<form onsubmit="registerPlayer(); return false;">
+
+<input type="text" id="player" placeholder="Player UID Name" required>
 <input type="text" id="uid" placeholder="Free Fire UID" required>
 <input type="tel" id="phone" placeholder="Contact Number" required>
+
 <button type="submit">Register via WhatsApp</button>
+
+<a href="https://chat.whatsapp.com/KIocVh3FXgJFpGonpMo8cE?mode=gi_t" target="_blank">
+<button type="button" style="background:#25D366">Join WhatsApp Group</button>
+</a>
+
 </form>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Registered Players</h2>
+
+<div class="players" id="playersList"></div>
+
 </section>
 
 <footer>
-© 2026 DADFROZ TOURNAMENT<br>
+© 2026 FREE FIRE TOURNAMENT<br>
 Not affiliated with Garena.
 </footer>
 
 <script>
+
 window.onload=function(){
 setTimeout(()=>{document.getElementById("loader").style.display="none";},1500);
+loadPlayers();
 }
 
-function sendToWhatsApp(){
-var team=document.getElementById("team").value;
-var captain=document.getElementById("captain").value;
+function registerPlayer(){
+
+var name=document.getElementById("player").value;
 var uid=document.getElementById("uid").value;
 var phone=document.getElementById("phone").value;
-var message =
-"🔥 DADFROZ FREE FIRE TOURNAMENT 🔥\n\n"+
-"Player Name: "+team+"\n"+
-"IGN / UID: "+captain+"\n"+
-"UID: "+uid+"\n"+
-"Contact: "+phone+"\n"+
-"Entry Fee: ₹30\n"+
-"Per Kill: ₹7\n"+
-"Server: India";
-var encodedMessage=encodeURIComponent(message);
-document.getElementById("clickSound").play();
-window.open("https://wa.me/919226577892?text="+encodedMessage,"_blank");
+
+if(!/^[0-9]{8,13}$/.test(uid)){
+alert("Enter valid Free Fire UID");
+return;
 }
 
-/* Matrix Background */
+if(!/^[6-9]\d{9}$/.test(phone)){
+alert("Enter valid Indian mobile number");
+return;
+}
+
+var message =
+"🔥 FREE FIRE TOURNAMENT 🔥\n\n"+
+"Player UID Name: "+name+"\n"+
+"UID: "+uid+"\n"+
+"Contact: "+phone;
+
+var encodedMessage=encodeURIComponent(message);
+
+window.open("https://wa.me/919226577892?text="+encodedMessage,"_blank");
+
+var players=JSON.parse(localStorage.getItem("players")||"[]");
+
+players.push({name,uid});
+
+localStorage.setItem("players",JSON.stringify(players));
+
+loadPlayers();
+
+document.querySelector("form").reset();
+}
+
+function loadPlayers(){
+
+var players=JSON.parse(localStorage.getItem("players")||"[]");
+
+var list=document.getElementById("playersList");
+
+list.innerHTML="";
+
+players.forEach(p=>{
+list.innerHTML+=`
+<div class="player">
+<strong>Player UID Name:</strong> ${p.name}<br>
+<strong>UID:</strong> ${p.uid}
+</div>
+`;
+});
+}
+
 var canvas=document.getElementById("matrix");
 var ctx=canvas.getContext("2d");
+
 canvas.height=window.innerHeight;
 canvas.width=window.innerWidth;
-var letters="01".split("");
+
+var letters="01";
 var fontSize=14;
 var columns=canvas.width/fontSize;
 var drops=[];
+
 for(var x=0;x<columns;x++) drops[x]=1;
+
 function draw(){
 ctx.fillStyle="rgba(0,0,0,0.07)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
+
 ctx.fillStyle="#00f5ff";
 ctx.font=fontSize+"px monospace";
+
 for(var i=0;i<drops.length;i++){
 var text=letters[Math.floor(Math.random()*letters.length)];
 ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
 drops[i]++;
-}}
+}
+}
+
 setInterval(draw,33);
+
 </script>
 
 </body>
